@@ -55,8 +55,8 @@ public partial class MainPage : ContentPage
             return;
         }
 
-        // 2. Determina o preço unitário da diária de acordo com o índice selecionado no Picker.
-        // Ponto de melhoria técnica: Estes valores de preço e capacidade estão "chumbados" (hardcoded).
+        // 2. Determina o preço unitário da diária e a capacidade máxima de acordo com a suíte selecionada.
+        // Ponto de melhoria técnica implementado: Agora a capacidade é dinâmica e validada contra os hóspedes.
         decimal valorDiaria = pkSuite.SelectedIndex switch
         {
             0 => 120.00m, // Standard
@@ -65,11 +65,27 @@ public partial class MainPage : ContentPage
             _ => 0
         };
 
+        int capacidade = pkSuite.SelectedIndex switch
+        {
+            0 => 2, // Standard comporta no máximo 2 pessoas
+            1 => 4, // Luxo comporta no máximo 4 pessoas
+            2 => 6, // Premium comporta no máximo 6 pessoas
+            _ => 0
+        };
+
+        // Validação: Quantidade de hóspedes não pode exceder a capacidade permitida pela suíte
+        if (qtdHospedes > capacidade)
+        {
+            string nomeSuite = pkSuite.SelectedItem?.ToString()?.Split('-')[0].Trim() ?? "Selecionada";
+            DisplayAlert("Capacidade Excedida", $"A suíte {nomeSuite} comporta no máximo {capacidade} hóspedes. Você informou {qtdHospedes} hóspedes.", "OK");
+            return;
+        }
+
         // 3. Instancia e preenche o modelo Suite
         Suite suite = new Suite
         {
             Tipo = pkSuite.SelectedItem?.ToString() ?? "",
-            Capacidade = 4, // Capacidade fixa em 4 neste ponto
+            Capacidade = capacidade,
             ValorDiaria = valorDiaria
         };
 
@@ -83,24 +99,50 @@ public partial class MainPage : ContentPage
         };
 
         // 5. Atualiza os componentes da interface visual com o resumo da reserva calculada
-        lblTipoSuite.Text = $"Suite: {suite.Tipo}";
+        lblTipoSuite.Text = $"Suite: {suite.Tipo.Split('-')[0].Trim()} (Capacidade: {suite.Capacidade} pessoas)";
         lblPeriodo.Text = $"Período: {checkIn:dd/MM/yyyy} a {checkOut:dd/MM/yyyy}";
         lblDiarias.Text = $"Diárias: {reserva.DiasReservados} noite(s)";
         lblHospedes.Text = $"Hóspedes: {qtdHospedes}";
         
-        // Formata a exibição do valor total no formato de moeda local (:C)
-        lblTotal.Text = $"Valor Total: {reserva.CalcularTotal():C}";
+        // Exibe o total formatado e indica se o desconto de 10% para estadias longas (>= 10 dias) foi aplicado
+        decimal total = reserva.CalcularTotal();
+        if (reserva.DiasReservados >= 10)
+        {
+            lblTotal.Text = $"Valor Total: {total:C}\n(10% de Desconto Aplicado!)";
+        }
+        else
+        {
+            lblTotal.Text = $"Valor Total: {total:C}";
+        }
 
         // Torna a seção (Border) de resumo visível para o usuário
         frameResultado.IsVisible = true;
     }
 
     /// <summary>
+    /// Evento disparado quando a data do check-in é alterada.
+    /// Ajusta dinamicamente a data mínima permitida para o check-out, evitando datas inválidas na interface.
+    /// </summary>
+    private void DpCheckIn_DateSelected(object? sender, DateChangedEventArgs e)
+    {
+        // A data mínima de saída deve ser pelo menos 1 dia após a data de entrada selecionada.
+        dpCheckOut.MinimumDate = e.NewDate.AddDays(1);
+
+        // Se a data atual de check-out for inferior ou igual à nova data de check-in,
+        // ajustamos automaticamente a data de check-out para o dia seguinte do check-in.
+        if (dpCheckOut.Date <= e.NewDate)
+        {
+            dpCheckOut.Date = e.NewDate.AddDays(1);
+        }
+    }
+
+    /// <summary>
     /// Evento disparado ao clicar no botão "Avançar".
-    /// Realiza a navegação assíncrona inserindo a tela de Sucesso (SucessoPage) na pilha de navegação.
+    /// Realiza a navegação segura utilizando as rotas do .NET MAUI Shell (GoToAsync).
     /// </summary>
     private async void BtnAvancar_Clicked(object? sender, EventArgs e)
     {
-        await Navigation.PushAsync(new SucessoPage());
+        // Navega de forma segura para a tela de Sucesso utilizando o nome da classe registrado como rota global no AppShell.
+        await Shell.Current.GoToAsync(nameof(SucessoPage));
     }
 }

@@ -67,23 +67,25 @@ Com o cálculo concluído, um painel visual (`Border x:Name="frameResultado"`) q
 2. **Interface Fluida e Responsiva**: O uso de layouts inteligentes (`VerticalStackLayout` emparelhado com `ScrollView`) garante que a tela role perfeitamente e se ajuste a múltiplos tamanhos de dispositivos móveis.
 3. **Validações Seguras Contra Quebras**: O app impede erros em tempo de execução ao forçar que datas retroativas fiquem desabilitadas nos seletores e ao usar `int.TryParse` para evitar quebras por caracteres na quantidade de hóspedes.
 4. **Organização das Entidades (Orientação a Objetos)**: Separação correta dos conceitos de negócio. Hóspede, Suíte e Reserva são classes com responsabilidades bem definidas no diretório `Models`.
-5. **Navegação Elegante**: Uso do padrão Shell da plataforma com transição assíncrona fluida (`Navigation.PushAsync` / `Navigation.PopAsync`).
+5. **Navegação Elegante e Segura**: Uso correto e nativo do padrão Shell da plataforma para transições de tela fluidas (`Shell.Current.GoToAsync(nameof(SucessoPage))` e `GoToAsync("..")`), evitando falhas de pilha de navegação.
+6. **Lógica de Negócios e Regras de Validação Sólidas**: Implementação rigorosa do cálculo de descontos (10% para estadias de 10 ou mais dias), mapeamento dinâmico de capacidades (Standard=2, Luxo=4, Premium=6) e validação contra o número de hóspedes.
 
-### ⚠️ Pontos a Melhorar (Refatorações Importantes)
-Como desenvolvedores, sempre pensamos em evolução de código. Aqui estão as oportunidades de melhoria que identifiquei:
-1. **Lógica de Preços "Chumbada" (Hardcoded)**: O preço da diária e a capacidade máxima estão escritos diretamente no código-behind (`MainPage.xaml.cs` na instrução switch). Isso dificulta reajustes de tarifa ou adição de novas suítes. O ideal seria que esses dados fossem carregados de uma fonte de dados externa.
-2. **Ausência de Validação de Capacidade da Suíte**: O sistema permite, por exemplo, simular 10 hóspedes em uma suíte cuja capacidade ideal é menor (atualmente fixa em 4). Deveria haver um bloqueio ou aviso visual se a capacidade da suíte escolhida for menor do que a quantidade de hóspedes inserida.
-3. **Falta de Persistência ou Envio Real de Dados**: Ao avançar para a página de sucesso, os dados inseridos e calculados não são gravados em um banco de dados local (como SQLite) e nem enviados para uma API externa.
-4. **Não Utilização do Padrão MVVM (Model-View-ViewModel)**: A lógica visual está acoplada no arquivo code-behind (`MainPage.xaml.cs`). A migração para MVVM facilitaria a testabilidade de software e separaria a lógica da interface do usuário.
+### ⚠️ Pontos a Melhorar (Próximos Passos de Arquitetura)
+Como desenvolvedores, sempre pensamos em evolução de código. Aqui estão as oportunidades de melhoria de arquitetura que identificamos:
+1. **Lógica de Preços "Chumbada" (Hardcoded)**: O preço da diária e a capacidade máxima ainda estão na estrutura switch no code-behind (`MainPage.xaml.cs`). O ideal seria que esses dados fossem carregados de uma fonte de dados externa ou banco de dados.
+2. **Falta de Persistência ou Envio Real de Dados**: Ao avançar para a página de sucesso, os dados calculados não são gravados em um banco de dados local (como SQLite) nem enviados para uma API externa.
+3. **Não Utilização do Padrão MVVM (Model-View-ViewModel)**: A lógica visual está acoplada no arquivo code-behind (`MainPage.xaml.cs`). A migração para MVVM facilitaria muito a testabilidade de software e separaria a lógica da interface do usuário.
 
 ---
 
 ## 🗺️ Roadmap de Evolução (Próximos Passos)
 
-Para elevar a aplicação ao nível de produção, proponho a seguinte trilha de evolução estruturada:
+A aplicação foi aprimorada com correções de lógica e usabilidade cruciais. Abaixo está a nossa trilha de evolução atualizada:
 
-### 🚀 Fase 1: Ajustes e Correções Rápidas (Quick Wins)
-- [ ] **Validação de Ocupação**: Impedir que o cálculo seja concluído se a quantidade de hóspedes inserida ultrapassar a capacidade máxima permitida da suíte.
+### 🚀 Fase 1: Ajustes e Correções de Lógica (Concluídas! 🎉)
+- [x] **Validação de Ocupação**: Impedir que o cálculo seja concluído se a quantidade de hóspedes inserida ultrapassar a capacidade máxima permitida por cada categoria de suíte.
+- [x] **Cálculo de Desconto**: Aplicação automatizada de desconto de 10% para reservas de 10 ou mais dias.
+- [x] **Ajuste Dinâmico de Datas**: Ao alterar a data de check-in, a data mínima do check-out é redefinida no seletor para evitar que o usuário agende datas retroativas ou checkout inválido.
 - [ ] **Cadastro do Hóspede**: Adicionar campos na interface para o usuário inserir seu Nome, CPF e Email reais, preenchendo o modelo `Hospede` que hoje está chumbado como "Convidado".
 
 ### 📦 Fase 2: Arquitetura e Persistência Local

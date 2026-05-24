@@ -28,7 +28,8 @@
                    TextColor="#D1C4E9" />
             <DatePicker x:Name="dpCheckIn"
                         TextColor="White"
-                        BackgroundColor="#3D2B79">
+                        BackgroundColor="#3D2B79"
+                        DateSelected="DpCheckIn_DateSelected">
                 <DatePicker.Format>dd/MM/yyyy</DatePicker.Format>
             </DatePicker>
 

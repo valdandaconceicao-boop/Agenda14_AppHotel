@@ -44,10 +44,23 @@ public class Reserva
     /// <summary>
     /// Calcula o valor total da reserva com base na quantidade de dias reservados
     /// e no valor unitário da diária da suíte vinculada.
+    /// Também aplica uma regra de negócio importante: se a estadia for de 10 dias ou mais,
+    /// o hóspede recebe um desconto de 10% sobre o total da simulação.
     /// </summary>
-    /// <returns>O valor decimal correspondente ao total da reserva.</returns>
+    /// <returns>O valor decimal correspondente ao total da reserva (com desconto se aplicável).</returns>
     public decimal CalcularTotal()
     {
-        return DiasReservados * Suite.ValorDiaria;
+        // Cálculo base do valor total: multiplicação direta dos dias pelo preço unitário da diária
+        decimal total = DiasReservados * Suite.ValorDiaria;
+
+        // Regra de negócio: Se o período de hospedagem for igual ou superior a 10 dias,
+        // aplica-se um desconto de 10% sobre o valor total da reserva.
+        if (DiasReservados >= 10)
+        {
+            // Subtrai 10% do valor total calculado anteriormente
+            total -= total * 0.10m;
+        }
+
+        return total;
     }
 }

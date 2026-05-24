@@ -16,11 +16,11 @@ public partial class SucessoPage : ContentPage
 
     /// <summary>
     /// Evento disparado quando o usuário clica no botão "Voltar".
-    /// Utiliza a navegação assíncrona para remover a página atual da pilha de navegação (PopAsync),
-    /// retornando o usuário à tela anterior (MainPage).
+    /// Utiliza a navegação baseada em rotas do .NET MAUI Shell para retornar à tela anterior ("..").
     /// </summary>
     private async void BtnVoltar_Clicked(object? sender, EventArgs e)
     {
-        await Navigation.PopAsync();
+        // Retorna com segurança para a página anterior na pilha de navegação do Shell.
+        await Shell.Current.GoToAsync("..");
     }
 }
