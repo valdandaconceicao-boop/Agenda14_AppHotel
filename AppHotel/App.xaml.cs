@@ -8,11 +8,12 @@ public partial class App : Application
 {
     /// <summary>
     /// Construtor principal da classe App.
-    /// Inicializa a renderização de componentes XAML.
+    /// No .NET 9 MAUI, o InitializeComponent() não é mais necessário aqui,
+    /// pois os recursos XAML (Colors.xaml, Styles.xaml) são carregados
+    /// automaticamente pelo framework através da compilação XAML implícita.
     /// </summary>
     public App()
     {
-        InitializeComponent();
     }
 
     /// <summary>
