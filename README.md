@@ -70,28 +70,5 @@ Como desenvolvedores, sempre pensamos em evolução de código. Aqui estão as o
 2. **Falta de Persistência ou Envio Real de Dados**: Ao avançar para a página de sucesso, os dados calculados não são gravados em um banco de dados local (como SQLite) nem enviados para uma API externa.
 3. **Não Utilização do Padrão MVVM (Model-View-ViewModel)**: A lógica visual está acoplada no arquivo code-behind (`MainPage.xaml.cs`). A migração para MVVM facilitaria muito a testabilidade de software e separaria a lógica da interface do usuário.
 
----
-
-## 🗺️ Roadmap de Evolução (Próximos Passos)
-
-A aplicação foi aprimorada com correções de lógica e usabilidade cruciais. Abaixo está a nossa trilha de evolução atualizada:
-
-### 🚀 Fase 1: Ajustes e Correções de Lógica (Concluídas! 🎉)
-- [x] **Validação de Ocupação**: Impedir que o cálculo seja concluído se a quantidade de hóspedes inserida ultrapassar a capacidade máxima permitida por cada categoria de suíte.
-- [x] **Cálculo de Desconto**: Aplicação automatizada de desconto de 10% para reservas de 10 ou mais dias.
-- [x] **Ajuste Dinâmico de Datas**: Ao alterar a data de check-in, a data mínima do check-out é redefinida no seletor para evitar que o usuário agende datas retroativas ou checkout inválido.
-- [ ] **Cadastro do Hóspede**: Adicionar campos na interface para o usuário inserir seu Nome, CPF e Email reais, preenchendo o modelo `Hospede` que hoje está chumbado como "Convidado".
-
-### 📦 Fase 2: Arquitetura e Persistência Local
-- [ ] **Migração para MVVM**: Criar `MainPageViewModel` para fazer a ligação dos dados (Data Binding) de forma limpa, limpando as responsabilidades de controle visual do code-behind.
-- [ ] **Carregamento Dinâmico de Suítes**: Criar um serviço mockado que simule a listagem de suítes, permitindo que a lista e seus preços venham de uma coleção dinâmica de objetos ao invés do switch-case do Picker.
-- [ ] **Banco de Dados Local (SQLite)**: Integrar a biblioteca `sqlite-net-pcl` para persistir o histórico de reservas confirmadas localmente no celular do usuário.
-
-### 🌐 Fase 3: Conectividade Cloud e Experiência Premium
-- [ ] **Integração com Web API**: Conectar o aplicativo a uma API REST externa em C# (.NET Web API) para registrar as reservas em tempo real em um servidor centralizado.
-- [ ] **Sistema de Notificações**: Configurar notificações locais de lembrete de reserva quando a data do check-in estiver próxima.
-- [ ] **Internacionalização (i18n)**: Adicionar suporte a múltiplos idiomas (Inglês, Espanhol) utilizando recursos multilíngues do .NET.
-
----
 
 *Documentação escrita por Valdan Conceição França*
