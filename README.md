@@ -1,9 +1,3 @@
-# 🏨 App Hotel — Sistema de Simulação de Reservas
-
-Olá! Seja muito bem-vindo ao **AppHotel**. 
-Esta documentação foi elaborada sob a perspectiva de um **Desenvolvedor Júnior/Pleno**, com o objetivo de explicar de forma clara, técnica e didática o que é esta aplicação, como ela funciona nos bastidores, seus pontos fortes atuais, os pontos que podemos melhorar e qual seria o nosso roteiro de desenvolvimento (Roadmap) para escalar este app.
-
----
 
 ## 📋 O que é a Aplicação?
 
