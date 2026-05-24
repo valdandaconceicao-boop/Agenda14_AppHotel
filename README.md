@@ -54,6 +54,25 @@ Com o cálculo concluído, um painel visual (`Border x:Name="frameResultado"`) q
 
 ---
 
+## 📸 Demonstração Visual (Screenshots da Aplicação)
+
+Abaixo estão as capturas de tela reais da aplicação rodando e demonstrando seu comportamento responsivo e robusto:
+
+### 1. Tela Inicial e Formulário de Dados
+A interface inicial adota o tema **Material 3 Charcoal Dark** sóbrio e minimalista. As fontes têm excelente leitura e os campos estão alinhados. É possível notar o design limpo do seletor de datas e picker de suítes.
+![Tela Inicial](assets/prints/01_tela_inicial.png)
+
+### 2. Lógica de Cálculo e Desconto em Ação
+Ao preencher os dados de estadia e clicar em **"Calcular Reserva"**, o app abre o painel de resumo posicionado perfeitamente lado a lado com o formulário (no formato de duas colunas do computador). 
+Neste exemplo, preenchemos uma reserva de 10 dias de Luxo. O sistema calculou o valor total e aplicou automaticamente a **regra de negócio de 10% de desconto** com a etiqueta amarela de sucesso em destaque!
+![Cálculo e Desconto](assets/prints/02_calculo_e_desconto.png)
+
+### 3. Confirmação Final de Sucesso
+Ao clicar em "Avançar", a navegação nativa do MAUI Shell realiza a transição para a página final de confirmação de sucesso, exibindo um feedback visual minimalista e limpo que confirma que a suíte está reservada.
+![Tela de Confirmação](assets/prints/03_confirmacao_sucesso.png)
+
+---
+
 ## 🧠 Análise Técnica de um Desenvolvedor (Júnior/Pleno)
 
 ### 💪 Pontos Fortes da Aplicação
