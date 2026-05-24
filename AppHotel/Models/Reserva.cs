@@ -2,8 +2,7 @@ namespace AppHotel.Models;
 
 /// <summary>
 /// Classe principal que gerencia o modelo de uma reserva.
-/// Consolida as informações da suíte escolhida, o hóspede responsável,
-/// as datas de estadia e realiza os cálculos financeiros associados.
+/// Junta tudo (hóspede e suíte) e gerencia as datas e os cálculos de estadia.
 /// </summary>
 public class Reserva
 {

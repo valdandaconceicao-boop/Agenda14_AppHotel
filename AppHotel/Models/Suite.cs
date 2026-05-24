@@ -2,7 +2,7 @@ namespace AppHotel.Models;
 
 /// <summary>
 /// Classe que representa o modelo de uma suíte de hotel.
-/// Define as características do quarto disponível para reserva, incluindo capacidade máxima e preço da diária.
+/// Encapsula a suíte (Tipo, Capacidade, ValorDiaria).
 /// </summary>
 public class Suite
 {

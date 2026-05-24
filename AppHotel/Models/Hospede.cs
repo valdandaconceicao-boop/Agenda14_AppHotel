@@ -2,7 +2,7 @@ namespace AppHotel.Models;
 
 /// <summary>
 /// Classe que representa o modelo de um hóspede no sistema de reservas do hotel.
-/// Armazena informações básicas de identificação e contato do cliente.
+/// Encapsula os dados do cliente (Nome, CPF, Email).
 /// </summary>
 public class Hospede
 {
