@@ -2,40 +2,42 @@
 <ContentPage xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
              xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
              x:Class="AppHotel.SucessoPage"
-             BackgroundColor="#2D1B69"
+             BackgroundColor="#1C1B1F"
              Title="Reserva Confirmada">
 
     <!-- Layout vertical centralizado para apresentar o feedback de sucesso de forma limpa e visível -->
-    <VerticalStackLayout VerticalOptions="Center" HorizontalOptions="Center" Spacing="30" Padding="30">
+    <VerticalStackLayout VerticalOptions="Center" HorizontalOptions="Center" Spacing="24" Padding="24" MaximumWidthRequest="500">
 
         <!-- Ícone visual de check (sucesso) -->
         <Label Text="&#x2705;"
                FontSize="80"
-               HorizontalOptions="Center" />
+               HorizontalOptions="Center"
+               Margin="0,0,0,8" />
 
         <Label Text="Reserva Confirmada&#x0a;com Sucesso!"
-               FontSize="28"
+               FontSize="26"
                FontAttributes="Bold"
-               TextColor="White"
+               TextColor="#E6E1E5"
                HorizontalTextAlignment="Center"
                HorizontalOptions="Center" />
 
         <Label Text="Seu quarto foi reservado.&#x0a;Agradecemos a preferência!"
-               FontSize="16"
-               TextColor="#B39DDB"
+               FontSize="15"
+               TextColor="#CAC4D0"
                HorizontalTextAlignment="Center"
-               HorizontalOptions="Center" />
+               HorizontalOptions="Center"
+               Margin="0,0,0,16" />
 
         <!-- Botão para voltar à tela de simulação anterior -->
         <Button x:Name="btnVoltar"
-                Text="Voltar"
-                FontSize="18"
+                Text="Voltar para o Início"
+                FontSize="16"
                 FontAttributes="Bold"
-                BackgroundColor="#7E57C2"
-                TextColor="White"
-                CornerRadius="10"
-                HeightRequest="50"
-                WidthRequest="200"
+                BackgroundColor="#D0BCFF"
+                TextColor="#381E72"
+                CornerRadius="20"
+                HeightRequest="48"
+                WidthRequest="220"
                 Clicked="BtnVoltar_Clicked" />
 
     </VerticalStackLayout>
