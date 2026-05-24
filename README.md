@@ -100,4 +100,4 @@ A aplicação foi aprimorada com correções de lógica e usabilidade cruciais. 
 
 ---
 
-*Documentação escrita por Valdan Conceição França — Desenvolvedor Júnior/Pleno da equipe.*
+*Documentação escrita por Valdan Conceição França*
