@@ -1,0 +1,23 @@
+## Visual Studio & .NET Core GitIgnore
+[Db]in/
+[Oo]bj/
+[Rr]elease/
+[Dd]ebug/
+
+# User-specific files
+*.rsuser
+*.suo
+*.user
+*.userosscache
+*.sln.docstates
+
+# Visual Studio Cache & Temporary Files
+.vs/
+.vs-code/
+.idea/
+.vscode/
+
+# OS-specific files
+.DS_Store
+Thumbs.db
+desktop.ini

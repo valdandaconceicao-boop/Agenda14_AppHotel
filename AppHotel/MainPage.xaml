@@ -1,0 +1,120 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             x:Class="AppHotel.MainPage"
+             BackgroundColor="#2D1B69"
+             Title="App Hotel">
+
+    <ScrollView>
+        <VerticalStackLayout Padding="30" Spacing="20">
+
+            <!-- Cabeçalho Principal do Aplicativo -->
+            <Label Text="&#x1F3E8; App Hotel"
+                   FontSize="32"
+                   FontAttributes="Bold"
+                   TextColor="White"
+                   HorizontalOptions="Center" />
+
+            <Label Text="Preencha os dados da sua reserva"
+                   FontSize="16"
+                   TextColor="#B39DDB"
+                   HorizontalOptions="Center" />
+
+            <BoxView HeightRequest="2" Color="#7E57C2" Margin="0,5" />
+
+            <!-- Formulário de Entrada: Data de Entrada (Check-in) -->
+            <Label Text="Data de Entrada (Check-in)"
+                   FontSize="16"
+                   TextColor="#D1C4E9" />
+            <DatePicker x:Name="dpCheckIn"
+                        TextColor="White"
+                        BackgroundColor="#3D2B79">
+                <DatePicker.Format>dd/MM/yyyy</DatePicker.Format>
+            </DatePicker>
+
+            <!-- Formulário de Entrada: Data de Saída (Check-out) -->
+            <Label Text="Data de Saída (Check-out)"
+                   FontSize="16"
+                   TextColor="#D1C4E9" />
+            <DatePicker x:Name="dpCheckOut"
+                        TextColor="White"
+                        BackgroundColor="#3D2B79">
+                <DatePicker.Format>dd/MM/yyyy</DatePicker.Format>
+            </DatePicker>
+
+            <!-- Formulário de Entrada: Seleção da Categoria da Suíte -->
+            <Label Text="Tipo de Suíte"
+                   FontSize="16"
+                   TextColor="#D1C4E9" />
+            <Picker x:Name="pkSuite"
+                    Title="Selecione a suíte"
+                    TextColor="White"
+                    TitleColor="#B39DDB"
+                    BackgroundColor="#3D2B79">
+                <Picker.ItemsSource>
+                    <x:Array Type="{x:Type x:String}">
+                        <x:String>Standard - R$ 120,00/dia</x:String>
+                        <x:String>Luxo - R$ 220,00/dia</x:String>
+                        <x:String>Premium - R$ 350,00/dia</x:String>
+                    </x:Array>
+                </Picker.ItemsSource>
+            </Picker>
+
+            <!-- Formulário de Entrada: Quantidade de Hóspedes -->
+            <Label Text="Quantidade de Hóspedes"
+                   FontSize="16"
+                   TextColor="#D1C4E9" />
+            <Entry x:Name="txtHospedes"
+                   Placeholder="Ex: 2"
+                   PlaceholderColor="#7E57C2"
+                   TextColor="White"
+                   Keyboard="Numeric"
+                   BackgroundColor="#3D2B79" />
+
+            <!-- Botão de Ação para Calcular a Simulação -->
+            <Button x:Name="btnCalcular"
+                    Text="Calcular Reserva"
+                    FontSize="18"
+                    FontAttributes="Bold"
+                    BackgroundColor="#7E57C2"
+                    TextColor="White"
+                    CornerRadius="10"
+                    HeightRequest="50"
+                    Clicked="BtnCalcular_Clicked"
+                    Margin="0,10,0,0" />
+
+            <!-- Contêiner (Border) Invisível por Padrão: Mostra o Resumo dos Cálculos -->
+            <Border x:Name="frameResultado"
+                   BackgroundColor="#3D2B79"
+                   Stroke="#7E57C2"
+                   StrokeShape="RoundRectangle 10"
+                   Padding="20"
+                   IsVisible="False">
+                <VerticalStackLayout Spacing="10">
+                    <Label Text="&#x2705; Resumo da Reserva"
+                           FontSize="20"
+                           FontAttributes="Bold"
+                           TextColor="White"
+                           HorizontalOptions="Center" />
+                    <BoxView HeightRequest="1" Color="#7E57C2" />
+                    <Label x:Name="lblTipoSuite" FontSize="16" TextColor="#D1C4E9" />
+                    <Label x:Name="lblPeriodo" FontSize="16" TextColor="#D1C4E9" />
+                    <Label x:Name="lblDiarias" FontSize="16" TextColor="#D1C4E9" />
+                    <Label x:Name="lblHospedes" FontSize="16" TextColor="#D1C4E9" />
+                    <Label x:Name="lblTotal" FontSize="22" FontAttributes="Bold" TextColor="#FFD54F" />
+                    <Button x:Name="btnAvancar"
+                            Text="Avançar"
+                            FontSize="18"
+                            FontAttributes="Bold"
+                            BackgroundColor="#FFD54F"
+                            TextColor="#2D1B69"
+                            CornerRadius="10"
+                            HeightRequest="50"
+                            Clicked="BtnAvancar_Clicked" />
+                </VerticalStackLayout>
+            </Border>
+
+        </VerticalStackLayout>
+    </ScrollView>
+
+</ContentPage>

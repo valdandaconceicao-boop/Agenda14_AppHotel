@@ -1,0 +1,43 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             x:Class="AppHotel.SucessoPage"
+             BackgroundColor="#2D1B69"
+             Title="Reserva Confirmada">
+
+    <!-- Layout vertical centralizado para apresentar o feedback de sucesso de forma limpa e visível -->
+    <VerticalStackLayout VerticalOptions="Center" HorizontalOptions="Center" Spacing="30" Padding="30">
+
+        <!-- Ícone visual de check (sucesso) -->
+        <Label Text="&#x2705;"
+               FontSize="80"
+               HorizontalOptions="Center" />
+
+        <Label Text="Reserva Confirmada&#x0a;com Sucesso!"
+               FontSize="28"
+               FontAttributes="Bold"
+               TextColor="White"
+               HorizontalTextAlignment="Center"
+               HorizontalOptions="Center" />
+
+        <Label Text="Seu quarto foi reservado.&#x0a;Agradecemos a preferência!"
+               FontSize="16"
+               TextColor="#B39DDB"
+               HorizontalTextAlignment="Center"
+               HorizontalOptions="Center" />
+
+        <!-- Botão para voltar à tela de simulação anterior -->
+        <Button x:Name="btnVoltar"
+                Text="Voltar"
+                FontSize="18"
+                FontAttributes="Bold"
+                BackgroundColor="#7E57C2"
+                TextColor="White"
+                CornerRadius="10"
+                HeightRequest="50"
+                WidthRequest="200"
+                Clicked="BtnVoltar_Clicked" />
+
+    </VerticalStackLayout>
+
+</ContentPage>
